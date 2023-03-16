@@ -1,0 +1,55 @@
+COMMAND USED TO CREATE THE FILE: 
+
+    echo 42 > $'"\x5c\x3F\x24\x2A\x27MaRViN\x27\x2A\x24\x3F\x5C"'
+
+LIST THIS FILE: (-N remove the quotes added by bash)
+
+    $ ls -lNra | cat -e 
+    total 16$
+    -rw-rw-r-- 1 kellen kellen 2100 MM-CM-$r 15 23:26 README.md$
+    -rw-rw-r-- 1 kellen kellen    3 MM-CM-$r 15 23:25 "\?$*'MaRViN'*$?\"$
+    drwxrwxr-x 8 kellen kellen 4096 MM-CM-$r 15 23:08 ..$
+    drwxrwxr-x 2 kellen kellen 4096 MM-CM-$r 15 23:26 .$
+
+    $ cat *MaR*
+    42
+
+EXPLANATION: 
+
+$'CHARS RAROS HERE with the \xHEXVALUE' 
+
+    This is a Bash feature that enables the use of escape sequences and
+    special characters inside single quotes. It allows the string to be processed by
+    the shell, expanding escape sequences and variables, before being passed to the
+    command.
+
+"\x5c\x3F\x24\x2A\x27MaRViN\x27\x2A\x24\x3F\x5C": 
+
+    This is the file name specified using the Bash feature described above.
+    Here's a breakdown of each escape sequence used:
+
+        \x5c: This is the hexadecimal value for the backslash character (\).
+
+        \x3F: This is the hexadecimal value for the question mark character (?).
+
+        \x24: This is the hexadecimal value for the dollar sign character ($).
+
+        \x2A: This is the hexadecimal value for the asterisk character (*).
+
+        \x27: This is the hexadecimal value for the single quote character (').
+
+        \x27\x2A: This sequence represents the literal characters "'*" in the
+            file name. The single quote and asterisk characters are escaped with the
+            hexadecimal values we saw earlier.
+
+        \x24\x3F: This sequence represents the literal characters "$?" in the
+            file name. The "$" and "?" characters are escaped with the hexadecimal values
+            we saw earlier.
+
+        \x5C: This is the hexadecimal value for the backslash character (\).
+
+
+Putting it all together, the command creates an empty file with the specified
+name. The backslash escape sequences are used to include special characters in
+the file name, and the $'...' feature of Bash is used to allow these escape
+sequences to be processed correctly.
